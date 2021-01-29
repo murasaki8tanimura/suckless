@@ -8,17 +8,18 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Fantasque Sans Mono:size=14" };
 static const char dmenufont[]       = "Fantasque Sans Mono:size=14";
-static const char col_gray[]       = "#2E3440";
-static const char col_white[]       = "#ECEFF4";
+static const char col_gray[]        = "#2E3440";
+static const char col_white[]       = "#D8DEE9";
+static const char col_blue[]       = "#81A1C1";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_white, col_gray, col_gray },
-	[SchemeSel]  = { col_gray, col_white,  col_white  },
+	[SchemeSel]  = { col_gray, col_blue,  col_blue },
 };
 
 /* tagging */
 
-static const char *tags[] = { "", "", "", "","","" };
+static const char *tags[] = { "", "", "", "","","", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -26,7 +27,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Steam",    NULL,       NULL,       1 << 5,            0,           -1 },
+	{ "Steam",    NULL,       NULL,       1 << 6,            0,           -1 },
 	{ "Audacious",NULL,       NULL,       1 << 4,            0,           -1 },
 	{ "Chromium", NULL,       NULL,       1 << 2,            0,           -1 },
 	{ "st",       NULL,       NULL,       1 << 1,            0,           -1 },
@@ -62,7 +63,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray, "-nf", col_white, "-sb", col_white, "-sf", col_gray, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray, "-nf", col_white, "-sb", col_blue, "-sf", col_gray, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *chromium[]  = { "chromium", NULL };
 static const char *pulse[]  = { "st -e pulsemixer", NULL };
