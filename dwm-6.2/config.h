@@ -17,20 +17,21 @@ static const char *colors[][3]      = {
 
 /* tagging */
 
-static const char *tags[] = { "", "", "", "","","", "" };
-
+static const char *tags[] = {"", "", "", "", "", "", "", ""};
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask   switchtotag    isfloating   monitor */
-	{ "Steam",      NULL,       NULL,       1 << 6,      0,            0,           -1 },
-	{ "Audacious",  NULL,       NULL,       1 << 4,      1,       	   0,           -1 },
-	{ "Pcmanfm",    NULL,       NULL,       1 << 3,      1,            0,           -1 },
-	{ "Firefox",    NULL,       NULL,       1 << 2,      1,            0,           -1 },
 	{ "st",         NULL,       NULL,       1 << 1,      1,            0,           -1 },
-	{ "discord",    NULL,       NULL,       1 << 5,      0,            0,           -1 },
+	{ "code-oss",   NULL,       NULL,       1 << 2,      1,            0,           -1 },
+	{ "Firefox",    NULL,       NULL,       1 << 3,      1,            0,           -1 },
+	{ "Pcmanfm",    NULL,       NULL,       1 << 4,      1,            0,           -1 },
+	{ "discord",    NULL,       NULL,       1 << 5,      1,            0,           -1 },
+	{ "Audacious",  NULL,       NULL,       1 << 6,      1,       	   0,           -1 },
+	{ "Steam",      NULL,       NULL,       1 << 7,      1,            1,           -1 },
+
 
 };
 
@@ -46,7 +47,7 @@ static const Layout layouts[] = {
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
  	{ "[@]",      spiral },
- 	{ "[\\]",      dwindle },
+ 	{ "[\\]",     dwindle },
 };
 
 /* key definitions */
@@ -65,15 +66,19 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_fg, "-sb", col_purple, "-sf", col_bg, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *firefox[]  = { "firefox-esr", NULL };
-static const char *fm[]  = { "pcmanfm", NULL };
+static const char *deesc[]  = { "discord", NULL };
+static const char *code[]     = { "code", NULL };
+static const char *fm[]       = { "pcmanfm", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = code} },
 	{ MODKEY|ControlMask,           XK_j,      pushdown,       {0} },
 	{ MODKEY|ControlMask,           XK_k,      pushup,         {0} },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = firefox } },
+	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = deesc } },
 	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = fm} },
 	{ MODKEY|ShiftMask,             XK_q,	   quit,           {0}  },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
@@ -83,9 +88,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+	{ MODKEY|ShiftMask,             XK_c,	   killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -99,15 +103,15 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
+	TAGKEYS(                        XK_9,                      0)
+	TAGKEYS(                        XK_8,                      1)
+	TAGKEYS(                        XK_7,                      2)
+	TAGKEYS(                        XK_6,                      3)
 	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
+	TAGKEYS(                        XK_4,                      5)
+	TAGKEYS(                        XK_3,                      6)
+	TAGKEYS(                        XK_2,                      7)
+	TAGKEYS(                        XK_1,                      8)
 };
 
 /* button definitions */
