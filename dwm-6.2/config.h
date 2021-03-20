@@ -4,8 +4,8 @@ static const unsigned int gappx     = 3;        /* Fucking Gaps */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Fantasque Sans Mono:size=15" };
-static const char dmenufont[]       = "Fantasque Sans Mono:size=15";
+static const char *fonts[]          = { "Fira Code:size=15" };
+static const char dmenufont[]       = "Fira Code:size=15";
 static const char col_bg[]          = "#282a36";
 static const char col_fg[]          = "#f8f8f2";
 static const char col_purple[]      = "#bd93f9";
@@ -17,21 +17,32 @@ static const char *colors[][3]      = {
 
 /* tagging */
 
-static const char *tags[] = {"", "", "", "", "", "", "", ""};
+static const char *tags[] = {"", "", "", "", "", "", ""};
 static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
-	/* class      instance    title       tags mask   switchtotag    isfloating   monitor */
-	{ "st",         NULL,       NULL,       1 << 1,      1,            0,           -1 },
-	{ "code-oss",   NULL,       NULL,       1 << 2,      1,            0,           -1 },
-	{ "Firefox",    NULL,       NULL,       1 << 3,      1,            0,           -1 },
-	{ "Pcmanfm",    NULL,       NULL,       1 << 4,      1,            0,           -1 },
-	{ "discord",    NULL,       NULL,       1 << 5,      1,            0,           -1 },
-	{ "Audacious",  NULL,       NULL,       1 << 6,      1,       	   0,           -1 },
-	{ "Steam",      NULL,       NULL,       1 << 7,      1,            1,           -1 },
 
+	/* class      instance    title       tags mask   switchtotag    isfloating   monitor */
+
+	/* WORKSPACE */
+	{ "st",         NULL,       NULL,       1 << 1,      1,            0,           -1 },
+	{ "code-oss",   NULL,       NULL,       1 << 1,      1,            0,           -1 },
+
+	/* INTERNET */
+	{ "firefox",    NULL,       NULL,       1 << 2,      1,            0,           -1 },
+	{ "Chromium",   NULL,       NULL,       1 << 2,      1,            0,           -1 },
+
+	/*FILE MANAGER*/
+	{ "Pcmanfm",    NULL,       NULL,       1 << 3,      1,            0,           -1 },
+	
+	/*FILES/PHOTOS TAP 4*/
+	{ "Zathura",    NULL,       NULL,       1 << 4,      1,            0,           -1 },
+	{ "Sxiv",       NULL,       NULL,       1 << 4,      1,            0,           -1 },
+	{ "mpv",        NULL,       NULL,       1 << 4,      1,            0,           -1 },
+
+	/*MUSIC TAP 3*/
+	{ "Audacious",  NULL,       NULL,       1 << 5,      1,       	   0,           -1 },
+
+	/*MESSAGING/SOCIAl TAP 2*/
+	{ "discord",    NULL,       NULL,       1 << 6,      1,            0,           -1 },
 
 };
 
@@ -64,23 +75,25 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_fg, "-sb", col_purple, "-sf", col_bg, NULL };
-static const char *termcmd[]  = { "st", NULL };
-static const char *firefox[]  = { "firefox-esr", NULL };
-static const char *deesc[]  = { "discord", NULL };
-static const char *code[]     = { "code", NULL };
-static const char *fm[]       = { "pcmanfm", NULL };
+static const char *termcmd[]  		= { "st", NULL };
+static const char *firefox[]  		= { "firefox", NULL };
+static const char *chromium[]  		= { "chromium", NULL };
+static const char *filemanager[]	= { "pcmanfm", NULL };
+static const char *audacious[]		= { "audacious", NULL };
+static const char *discord[]  		= { "discord", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = code} },
+	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = firefox} },
+	{ MODKEY,                       XK_w,      spawn,          {.v = chromium } },
+	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = filemanager} },
+	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = audacious} },
+	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = discord} },
 	{ MODKEY|ControlMask,           XK_j,      pushdown,       {0} },
 	{ MODKEY|ControlMask,           XK_k,      pushup,         {0} },
-	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = firefox } },
-	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = deesc } },
-	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = fm} },
-	{ MODKEY|ShiftMask,             XK_q,	   quit,           {0}  },
+	{ MODKEY|ControlMask,           XK_q,	   quit,           {0}  },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
