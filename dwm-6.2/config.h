@@ -17,7 +17,7 @@ static const char *colors[][3]      = {
 
 /* tagging */
 
-static const char *tags[] = {"", "", "", "", "", "", ""};
+static const char *tags[] = {"", "", "", "", "", ""};
 static const Rule rules[] = {
 
 	/* class      instance    title       tags mask   switchtotag    isfloating   monitor */
@@ -40,10 +40,7 @@ static const Rule rules[] = {
 	{ "mpv",        NULL,       NULL,       1 << 4,      1,            0,           -1 },
 
 	/*MUSIC TAP 3*/
-	{ "Audacious",  NULL,       NULL,       1 << 5,      1,       	   0,           -1 },
-
-	/*MESSAGING/SOCIAl TAP 2*/
-	{ "discord",    NULL,       NULL,       1 << 6,      1,            0,           -1 },
+	{ "vlc",        NULL,       NULL,       1 << 5,      1,       	   0,           -1 },
 
 };
 
