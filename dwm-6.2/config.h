@@ -17,30 +17,30 @@ static const char *colors[][3]      = {
 
 /* tagging */
 
-static const char *tags[] = {"", "", "", "", "", ""};
+static const char *tags[] = {"", "", "", "", "", "", "", "", "" };
 static const Rule rules[] = {
 
 	/* class      instance    title       tags mask   switchtotag    isfloating   monitor */
 
 	/* WORKSPACE */
-	{ "st",         	NULL,       NULL,       1 << 1,      1,            0,           -1 },
-	{ "URxvt",      	NULL,       NULL,       1 << 1,      1,            0,           -1 },
-	{ "code-oss",   	NULL,       NULL,       1 << 1,      1,            0,           -1 },
+	{ "st",         	NULL,       NULL,       1 << 0,      1,            0,           -1 },
+	{ "URxvt",      	NULL,       NULL,       1 << 0,      1,            0,           -1 },
+	{ "code-oss",   	NULL,       NULL,       1 << 0,      1,            0,           -1 },
 
 	/* INTERNET */
-	{ "qutebrowser",	NULL,       NULL,       1 << 2,      1,            0,           -1 },
-	{ "Chromium",   	NULL,       NULL,       1 << 2,      1,            0,           -1 },
+	{ "qutebrowser",	NULL,       NULL,       1 << 1,      1,            0,           -1 },
+	{ "Chromium",   	NULL,       NULL,       1 << 1,      1,            0,           -1 },
 
 	/*FILE MANAGER*/
-	{ "Pcmanfm",    	NULL,       NULL,       1 << 3,      1,            0,           -1 },
+	{ "Pcmanfm",    	NULL,       NULL,       1 << 2,      1,            0,           -1 },
 	
 	/*FILES/PHOTOS TAP 4*/
-	{ "Zathura",    	NULL,       NULL,       1 << 4,      1,            0,           -1 },
-	{ "Sxiv",       	NULL,       NULL,       1 << 4,      1,            0,           -1 },
-	{ "mpv",        	NULL,       NULL,       1 << 4,      1,            0,           -1 },
-	{ "vlc",        	NULL,       NULL,       1 << 4,      1,       	   0,           -1 },
+	{ "Zathura",    	NULL,       NULL,       1 << 3,      1,            0,           -1 },
+	{ "feh",       	NULL,       NULL,       1 << 3,      1,            0,           -1 },
+	{ "mpv",        	NULL,       NULL,       1 << 3,      1,            0,           -1 },
+	{ "vlc",        	NULL,       NULL,       1 << 3,      1,       	   0,           -1 },
 
-	{ "discord",    	NULL,       NULL,       1 << 5,      1,       	   0,           -1 },
+	{ "discord",    	NULL,       NULL,       1 << 4,      1,       	   0,           -1 },
 
 };
 
